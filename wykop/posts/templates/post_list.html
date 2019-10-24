@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'post_pagination.html' %}
+    <ol start="{{ page_obj.start_index }}">
+        {% for post in posts %}
+            <li>
+                {% include 'post_inner.html' with video_size='200x150' image_class='image_mini' %}
+            </li>
+        {% endfor %}
+    </ol>
+    {% include 'post_pagination.html' %}
+    <hr>
+{% endblock %}

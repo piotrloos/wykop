@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'post_inner.html' with image_class='image_normal' %}
+    <div>
+        {% if prev_post %}
+            <a href="{% url 'posts:details' prev_post.pk %}">poprzednia wrzuta</a>
+        {% else %}
+            <span style="text-decoration: line-through;">poprzednia wrzuta</span>
+        {% endif %}
+        {% if next_post %}
+            <a href="{% url 'posts:details' next_post.pk %}">następna wrzuta</a>
+        {% else %}
+            <span style="text-decoration: line-through;">następna wrzuta</span>
+        {% endif %}
+    </div>
+    <hr>
+    <a href="{% url 'posts:list' %}">wróć do wykopu!</a>
+{% endblock %}

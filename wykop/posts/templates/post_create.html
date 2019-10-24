@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="wrzuć!">
+</form>
+<hr>
+<a href="{% url 'posts:list' %}">wróć do wykopu!</a>
+
+{% endblock %}

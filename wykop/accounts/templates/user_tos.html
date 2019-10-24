@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+aktualna wersja regulaminu: {{ tos_version }}<br>
+ble ble ble<br>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="potwierdź!">
+</form>
+<hr>
+<a href="{% url 'posts:list' %}">wróć do wykopu!</a>
+
+{% endblock %}

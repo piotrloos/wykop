@@ -1,0 +1,15 @@
+{% load static %}
+
+<html>
+<head>
+    <title>mój wykop</title>
+    <link rel="stylesheet" type="text/css" href="{% static "wykop.css" %}">
+    <link rel="icon" type="image/png" href="{% static "favicon.ico" %}">
+</head>
+<body>
+    {% include 'profile_box.html' %}
+    <h1><a href="{% url 'posts:list' %}">mój wykop - siema!</a></h1>
+    {% block content %}
+    {% endblock%}
+</body>
+</html>

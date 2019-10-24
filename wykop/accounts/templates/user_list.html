@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ol>
+        {% for view_user in users %}
+            <li><h3>
+                {% include 'user_name.html' with u=view_user %}
+                ({{ view_user.posts.count }} postów)
+            </h3></li>
+        {% endfor %}
+    </ol>
+    <hr>
+    <a href="{% url 'posts:list' %}">wróć do wykopu!</a>
+{% endblock %}

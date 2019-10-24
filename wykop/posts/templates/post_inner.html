@@ -1,0 +1,50 @@
+{% load vote %}
+{% load embed_video_tags %}
+{% user_vote_for_post as user_voted %}
+
+<div>
+    <h2><a href="{% url 'posts:details' post.pk %}">{{ post.title }}</a></h2>
+    <h4>{{ post.text }}</h4>
+    {% if post.image %}
+        <img src="{{ post.image.url }}" class="{{ image_class }}">
+    {% endif %}
+    {% if post.video %}
+        {% video post.video video_size %}
+    {% endif %}
+    <h6>
+        {% include 'user_name.html' with u=post.author %}
+        {# a href="{% url 'accounts:profile' post.author.pk %}">{{ post.author }}</a> #}
+        ({{ post.created }})
+    </h6>
+    <span class="
+        {% if post.score > 0 %}
+            good
+        {% elif post.score < 0 %}
+            bad
+        {% else %}
+            neutral
+        {% endif %}
+    ">rank: {{ post.score }}</span>
+
+    {% if user.is_authenticated and post.author_id != user.pk %}
+        {% if not user_voted %}
+            <form method="post" action="{% url 'posts:vote' post.pk %}" style="display: inline-block">
+                {% csrf_token %}
+                <input type="hidden" name="value" value="1">
+                <input type="submit" value="+" class="good">
+            </form>
+            <form method="post" action="{% url 'posts:vote' post.pk %}" style="display: inline-block">
+                {% csrf_token %}
+                <input type="hidden" name="value" value="-1">
+                <input type="submit" value="-" class="bad">
+            </form>
+        {% else %}
+            <span>(już oceniłeś na {{ user_voted }})</span>
+        {% endif %}
+    {% endif %}
+    <br>
+    {% if user == post.author %}
+        <a href="{% url 'posts:update' post.pk %}">edytuj!</a>
+        <a href="{% url 'posts:delete' post.pk %}">wywal!</a>
+    {% endif %}
+</div>

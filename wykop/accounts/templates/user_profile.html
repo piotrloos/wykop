@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {# <h2><a href="{% url 'accounts:profile' author.pk %}">{{ author.username }}</a></h2> #}
+    <h2>
+        {% include 'user_name.html' with u=author %}
+    </h2>
+    <h4>{{ author.first_name }} {{ author.last_name }}</h4>
+    <h6>{{ author.email }}</h6>
+    <hr>
+    <ol>
+        {% for post in author.posts.all %}
+            <li>
+                {% include 'post_inner.html' with video_size='200x150' image_class='image_mini' %}
+            </li>
+        {% endfor %}
+    </ol>
+    <hr>
+    <a href="{% url 'posts:list' %}">wróć do wykopu!</a>
+    <a href="{% url 'accounts:list' %}">wróć do listy ludków!</a>
+{% endblock %}

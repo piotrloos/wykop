@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>czy na pewno wywalić wrzutę "{{ object }}"?</p>
+    <input type="submit" value="wywal!">
+</form>
+<hr>
+
+<a href="{% url 'posts:details' post.pk %}">wróć do postu!</a>
+<a href="{% url 'posts:list' %}">wróć do wykopu!</a>
+
+{% endblock %}

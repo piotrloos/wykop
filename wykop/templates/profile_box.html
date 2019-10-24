@@ -1,0 +1,17 @@
+<div align="right">
+    <form method="get" action="{% url 'posts:list' %}">
+        <input type="search" name="search" placeholder="wpisz frazę" value="{{search_value}}">
+        <input type="submit" value="szukaj!">
+    </form>
+    {% if user.is_authenticated %}
+        zwą cię jako: <a href="{% url 'accounts:profile' user.pk %}">{{ user.username }}</a>
+        <a href="{% url 'accounts:update' %}">edytuj profil!</a>
+        <a href="{% url 'accounts:logout' %}">wyłącz się!</a>
+        <a href="{% url 'posts:create' %}">wrzuć coś!</a>
+    {% else %}
+        nie znamy się...
+        <a href="{% url 'accounts:login' %}">włącz się!</a>
+        <a href="{% url 'accounts:register' %}">przedstaw się!</a>
+    {% endif %}
+    <a href="{% url 'accounts:list' %}">lista ludków</a>
+</div>

@@ -1,0 +1,14 @@
+<a href="{% url 'accounts:profile' u.id %}">{{ u.username }}</a>
+{% if user.is_staff %}
+    <form method="post" action="{% url 'accounts:ban' %}" style="display: inline-block">
+        {% csrf_token %}
+        <input type="hidden" name="user_id" value="{{u.id}}">
+        {% if u.is_banned %}
+            <input type="hidden" name="ban" value="False">
+            <input type="submit" value="unban!">
+        {% else %}
+            <input type="hidden" name="ban" value="True">
+            <input type="submit" value="ban!">
+        {% endif %}
+    </form>
+{% endif %}

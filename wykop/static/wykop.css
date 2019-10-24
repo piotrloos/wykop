@@ -1,0 +1,32 @@
+h1
+    {
+        color: blue;
+        text-align: center;
+}
+
+.good
+    {
+        background-color: lightgreen;
+    }
+
+.bad
+    {
+        background-color: red;
+    }
+
+.neutral
+    {
+        background-color: lightgray;
+    }
+
+.image_normal
+    {
+        max-height: 400px;
+        max-width: 400px;
+    }
+
+.image_mini
+    {
+        max-height: 100px;
+        max-width: 100px;
+    }

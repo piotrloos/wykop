@@ -1,0 +1,37 @@
+{% load url_utils %}
+
+{% if is_paginated %}
+
+    {% if page_obj.number != 1 %}
+        <a href="?{% url_replace 'page' 1 %}">&laquo;</a>
+    {% else %}
+        <span class="disabled">&laquo;</span>
+    {% endif %}
+
+    {% if page_obj.has_previous %}
+        <a href="?{% url_replace 'page' page_obj.previous_page_number %}">&lsaquo;</a>
+    {% else %}
+        <span class="disabled">&lsaquo;</span>
+    {% endif %}
+
+    {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+            <b class="active">{{ i }}</b>
+        {% else %}
+            <a href="?{% url_replace 'page' i %}">{{ i }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?{% url_replace 'page' page_obj.next_page_number %}">&rsaquo;</a>
+    {% else %}
+        <span class="disabled">&rsaquo;</span>
+    {% endif %}
+
+    {% if page_obj.number != paginator.num_pages %}
+        <a href="?{% url_replace 'page' paginator.num_pages %}">&raquo;</a>
+    {% else %}
+        <span class="disabled">&raquo;</span>
+    {% endif %}
+
+{% endif %}
